@@ -5,15 +5,35 @@
   "repository": "git@github.com:KiyoshiMori/tsx-crud.git",
   "author": "kiyoshimori <Darkf0x13566@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development BABEL_ENV=development nodemon --watch config --watch src/server src/server/index.ts"
+  },
   "dependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/express": "^4.17.0",
+    "@types/node": "^12.6.8",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@types/webpack": "^4.32.1",
+    "@types/webpack-dev-middleware": "^2.0.3",
+    "@types/webpack-env": "^1.14.0",
+    "@types/webpack-hot-middleware": "^2.16.5",
     "express": "^4.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.38.0"
+    "webpack": "^4.38.0",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-hot-server-middleware": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
