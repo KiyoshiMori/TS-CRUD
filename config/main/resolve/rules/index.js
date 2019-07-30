@@ -1,8 +1,8 @@
 const devRules = [
-	{
-		test: /\.tsx?/,
-		use: 'ts-loader',
-	}
+    {
+        test: /\.tsx?/,
+        use: 'ts-loader',
+    },
 ];
 
 module.exports = { devRules };
