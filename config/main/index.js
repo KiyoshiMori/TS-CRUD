@@ -12,12 +12,12 @@ module.exports = {
             name: 'client',
             path: 'dist',
             opts: {
-				publicPath: '/',
+                publicPath: '/',
             },
         }),
         resolve,
         rules,
-		plugins: clientPlugins
+        plugins: clientPlugins
     },
     server: {
         entry: serverEntry,
