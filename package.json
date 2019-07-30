@@ -6,7 +6,13 @@
   "author": "kiyoshimori <Darkf0x13566@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development BABEL_ENV=development nodemon --watch config --watch src/server src/server/index.ts"
+    "dev": "NODE_ENV=development BABEL_ENV=development nodemon --watch config --watch src/server src/server/index.ts",
+    "lint": "eslint --fix ./"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "dependencies": {
     "@babel/cli": "^7.5.5",
@@ -51,6 +57,7 @@
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^6.1.0",
+    "husky": "^3.0.2",
     "nodemon": "^1.19.1"
   }
 }
