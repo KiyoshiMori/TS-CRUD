@@ -1,14 +1,14 @@
 import 'isomorphic-fetch';
-import express from 'express';
+import express, { Express } from 'express';
 
 import graphqlMW from './graphql';
 import webpackCompiler from './webpackCompiler';
 
-const server = express();
+const server: Express = express();
 
 server.use(graphqlMW());
 
-let isBuilt = false;
+let isBuilt: boolean = false;
 
 const done = () => {
     if (isBuilt) return;
