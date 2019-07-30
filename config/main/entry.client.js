@@ -2,6 +2,8 @@ module.exports = {
     vendor: ['react', 'react-dom'],
     main: [
         '@babel/polyfill',
-        './src/main.ts'
+		'react-hot-loader/patch',
+		'webpack-hot-middleware/client?reload=true',
+        './src/App.tsx'
     ]
 };

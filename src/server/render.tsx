@@ -1,9 +1,18 @@
 import * as React from 'react';
 import { Request, Response } from 'express';
+import { Stats } from 'webpack';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import flushChunks from 'webpack-flush-chunks';
+import { flushChunkNames } from 'react-universal-component/server';
 import App from '../shared/mainPage';
 
-export default () => (req:Request, res:Response) => {
+export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Response) => {
+    const { js } = flushChunks(clientStats, {
+        chunkNames: flushChunkNames(),
+    });
+
+    console.log(typeof js, js);
+
     res.status(200);
     res.send(`<!doctype html>\n${renderToStaticMarkup(
 <html>
@@ -18,6 +27,7 @@ export default () => (req:Request, res:Response) => {
                     __html: renderToString(<App />)
                 }}
             />
+            <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />
             </body>
         </html>
     )}`);

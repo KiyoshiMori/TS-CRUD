@@ -10,6 +10,7 @@ const configuration = {
 		rules: main.client.rules.devRules,
 	},
 	plugins: [],
+	node: { fs: 'empty' },
 };
 
 module.exports = configuration;

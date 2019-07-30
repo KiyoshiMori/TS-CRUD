@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { hydrate } from 'react-dom/server';
+import { hydrate } from 'react-dom';
+import { AppContainer as HotContainer } from 'react-hot-loader';
 
 import MainPage from './shared/mainPage';
 
 hydrate(
-    <MainPage />,
+    <HotContainer>
+        <MainPage />
+    </HotContainer>,
     document.getElementById('root')
 );
 

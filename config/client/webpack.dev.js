@@ -17,7 +17,8 @@ const configuration = {
     module: {
         rules: main.client.rules.devRules,
     },
-    plugins: [],
+    plugins: main.client.plugins,
+    node: { fs: 'empty' },
 };
 
 module.exports = configuration;
