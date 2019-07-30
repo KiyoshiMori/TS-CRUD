@@ -4,7 +4,10 @@ import { Stats } from 'webpack';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
 import { flushChunkNames } from 'react-universal-component/server';
+import { ApolloProvider } from 'react-apollo';
 import App from '../shared/mainPage';
+
+import client from '../lib/graphql/client';
 
 export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Response) => {
     const { js } = flushChunks(clientStats, {
@@ -13,7 +16,7 @@ export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Re
 
     res.status(200);
     res.send(`<!doctype html>\n${renderToStaticMarkup(
-<html>
+    <html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>TS-CRUD</title>
@@ -22,7 +25,11 @@ export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Re
             <div
                 id="root"
                 dangerouslySetInnerHTML={{
-                    __html: renderToString(<App />)
+                    __html: renderToString(
+                        <ApolloProvider client={client}>
+                            <App />
+                        </ApolloProvider>
+                    )
                 }}
             />
             <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />

@@ -6,9 +6,7 @@ import { buildSchema } from 'type-graphql';
 
 import resolvers from '../lib/graphql/schemas';
 
-const server: Express = express();
-
-export default async (): Promise<Express | null> => {
+export default async (server: Express, cb: () => Express): Promise<Express | null> => {
     let isBuilt: boolean = false;
 
     if (isBuilt) return null;
@@ -23,8 +21,11 @@ export default async (): Promise<Express | null> => {
 
     server.use('/playground', expressPlayground({ endpoint: '/graphql' }));
 
+    server.use(cb());
+
     server.listen(3000, () => {
         isBuilt = true;
     });
+
     return server;
 }

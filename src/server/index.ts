@@ -7,6 +7,5 @@ import webpackCompiler from './webpackCompiler';
 const server: Express = express();
 
 server.use('/test', (req, res) => res.json({ test: 'test' }));
-server.use(webpackCompiler());
 
-startServer();
+startServer(server, () => webpackCompiler());
