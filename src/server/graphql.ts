@@ -1,21 +1,30 @@
 import express, { Express } from 'express';
+import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 import expressPlayground from 'graphql-playground-middleware-express';
+import { buildSchema } from 'type-graphql';
+
+import resolvers from '../lib/graphql/schemas';
 
 const server: Express = express();
 
-const { typeDefs, resolvers } = require('../lib/graphql/schema');
+export default async (): Promise<Express | null> => {
+    let isBuilt: boolean = false;
 
-export default (): Express => {
-    const apolloServer: ApolloServer = new ApolloServer({ typeDefs, resolvers });
+    if (isBuilt) return null;
+
+    const schema = await buildSchema({
+        resolvers,
+    });
+
+    const apolloServer: ApolloServer = new ApolloServer({ schema });
 
     apolloServer.applyMiddleware({ app: server });
 
     server.use('/playground', expressPlayground({ endpoint: '/graphql' }));
 
-    server.use('/test', (req, res) => res.json({ test: '123' }));
-
-    console.log('gql mw');
-
+    server.listen(3000, () => {
+        isBuilt = true;
+    });
     return server;
 }

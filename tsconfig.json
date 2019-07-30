@@ -5,7 +5,10 @@
     "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "src"
