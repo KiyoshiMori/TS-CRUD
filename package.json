@@ -1,0 +1,19 @@
+{
+  "name": "tsx-curd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:KiyoshiMori/tsx-crud.git",
+  "author": "kiyoshimori <Darkf0x13566@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "express": "^4.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "typescript": "^3.5.3",
+    "webpack": "^4.38.0"
+  }
+}
