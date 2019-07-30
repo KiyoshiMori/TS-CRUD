@@ -11,8 +11,6 @@ export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Re
         chunkNames: flushChunkNames(),
     });
 
-    console.log(typeof js, js);
-
     res.status(200);
     res.send(`<!doctype html>\n${renderToStaticMarkup(
 <html>
