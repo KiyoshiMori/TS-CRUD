@@ -18,4 +18,4 @@ export default () => {
     console.log('gql mw');
 
     return server;
-}
+};
