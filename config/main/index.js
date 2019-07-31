@@ -17,7 +17,7 @@ module.exports = {
         }),
         resolve,
         rules,
-        plugins: clientPlugins
+        plugins: clientPlugins,
     },
     server: {
         entry: serverEntry,

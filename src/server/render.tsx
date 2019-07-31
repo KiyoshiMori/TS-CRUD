@@ -15,26 +15,28 @@ export default ({ clientStats }: { clientStats: Stats }) => (req: Request, res: 
     });
 
     res.status(200);
-    res.send(`<!doctype html>\n${renderToStaticMarkup(
-        <html>
-            <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>TS-CRUD</title>
-            </head>
-            <body>
-                <div
-                    id="root"
-                    dangerouslySetInnerHTML={{
-                        __html: renderToString(
-                            <ApolloProvider client={client}>
-                                <App />
-                            </ApolloProvider>
-                        )
-                    }}
-                />
-                <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />
-            </body>
-        </html>
-    )}`);
+    res.send(
+        `<!doctype html>\n${renderToStaticMarkup(
+            <html>
+                <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>TS-CRUD</title>
+                </head>
+                <body>
+                    <div
+                        id="root"
+                        dangerouslySetInnerHTML={{
+                            __html: renderToString(
+                                <ApolloProvider client={client}>
+                                    <App />
+                                </ApolloProvider>,
+                            ),
+                        }}
+                    />
+                    <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />
+                </body>
+            </html>,
+        )}`,
+    );
     res.end();
-}
+};

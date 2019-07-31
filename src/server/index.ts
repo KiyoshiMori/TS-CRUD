@@ -5,8 +5,7 @@ import startServer from './graphql';
 import webpackCompiler from './webpackCompiler';
 import db from '../lib/db';
 
-db
-    .authenticate()
+db.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
     })

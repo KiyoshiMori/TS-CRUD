@@ -1,4 +1,4 @@
-import {Resolver, Query, Arg} from "type-graphql";
+import { Resolver, Query, Arg } from 'type-graphql';
 
 import Recipe from './RecipeDef';
 

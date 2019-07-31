@@ -12,7 +12,7 @@ hydrate(
             <App />
         </HotContainer>
     </ApolloProvider>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );
 
 if (module.hot) {

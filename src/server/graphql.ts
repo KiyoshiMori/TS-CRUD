@@ -28,4 +28,4 @@ export default async (server: Express, cb: () => Express): Promise<Express | nul
     });
 
     return server;
-}
+};
