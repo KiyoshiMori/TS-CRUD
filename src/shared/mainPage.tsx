@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import { Query } from 'react-apollo';
 
 import { getRecipe } from 'lib/graphql/queries/recipe';
