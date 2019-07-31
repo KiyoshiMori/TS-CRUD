@@ -7,7 +7,7 @@ import { buildSchema } from 'type-graphql';
 import resolvers from '../lib/graphql/schemas';
 
 export default async (server: Express, cb: () => Express): Promise<Express | null> => {
-    let isBuilt: boolean = false;
+    let isBuilt = false;
 
     if (isBuilt) return null;
 

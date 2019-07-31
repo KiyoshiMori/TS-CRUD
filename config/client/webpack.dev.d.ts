@@ -1,14 +1,14 @@
 interface webpack {
-    devServer: devServerType
+    devServer: devServerType;
 }
 
-type devServerType = {
-    contentBase: string,
-    overlay: boolean,
-    hot: boolean,
-    stats: statsType,
-};
+interface devServerType {
+    contentBase: string;
+    overlay: boolean;
+    hot: boolean;
+    stats: statsType;
+}
 
-type statsType = {
-    colors: boolean,
-};
+interface statsType {
+    colors: boolean;
+}

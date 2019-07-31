@@ -8,9 +8,9 @@ import client from 'lib/graphql/client';
 
 hydrate(
     <ApolloProvider client={client}>
-    <HotContainer>
-        <App />
-    </HotContainer>
+        <HotContainer>
+            <App />
+        </HotContainer>
     </ApolloProvider>,
     document.getElementById('root')
 );

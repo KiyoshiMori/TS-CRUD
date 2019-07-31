@@ -3,16 +3,16 @@ import {Resolver, Query, Arg} from "type-graphql";
 import Recipe from './RecipeDef';
 
 class RecipeService {
-   findById(id: number) {
-       if (id === 0) {
-           return undefined;
-       }
+    findById(id: number) {
+        if (id === 0) {
+            return undefined;
+        }
 
-       return {
-           title: 'test',
-           id,
-       };
-   }
+        return {
+            title: 'test',
+            id,
+        };
+    }
 }
 
 class RecipeNotFoundError extends Error {

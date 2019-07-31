@@ -1,4 +1,4 @@
-import main from '../main';
+const main = require('../main');
 
 const configuration = {
     mode: 'development',

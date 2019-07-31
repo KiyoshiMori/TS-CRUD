@@ -9,30 +9,30 @@ import App from '../shared/mainPage';
 
 import client from '../lib/graphql/client';
 
-export default ({ clientStats }: { clientStats: Stats }) => (req:Request, res:Response) => {
+export default ({ clientStats }: { clientStats: Stats }) => (req: Request, res: Response) => {
     const { js } = flushChunks(clientStats, {
         chunkNames: flushChunkNames(),
     });
 
     res.status(200);
     res.send(`<!doctype html>\n${renderToStaticMarkup(
-    <html>
+        <html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>TS-CRUD</title>
             </head>
             <body>
-            <div
-                id="root"
-                dangerouslySetInnerHTML={{
-                    __html: renderToString(
-                        <ApolloProvider client={client}>
-                            <App />
-                        </ApolloProvider>
-                    )
-                }}
-            />
-            <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />
+                <div
+                    id="root"
+                    dangerouslySetInnerHTML={{
+                        __html: renderToString(
+                            <ApolloProvider client={client}>
+                                <App />
+                            </ApolloProvider>
+                        )
+                    }}
+                />
+                <div id="scripts" dangerouslySetInnerHTML={{ __html: js.toString() }} />
             </body>
         </html>
     )}`);
