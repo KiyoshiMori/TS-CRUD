@@ -6,7 +6,7 @@ class Articles extends Model {}
 Articles.init(
     {
         id: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             primaryKey: true,
         },
         title: Sequelize.STRING,

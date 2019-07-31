@@ -26,7 +26,8 @@ export const sequelize = new Sequelize(
 
 fs.readdir(path.resolve(__dirname, './Models'), (err: Error | null, files: string[]): void => {
     files.forEach((file: string): void => {
-        db[file] = sequelize.import(__dirname + `/Models/${file}`);
+        const fileName = file.split('.')[0];
+        db[fileName] = sequelize.import(__dirname + `/Models/${file}`);
     });
 });
 

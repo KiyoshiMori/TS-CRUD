@@ -1,8 +1,7 @@
 import fs, { Stats } from 'fs';
 import path from 'path';
 
-import { ResolverObject } from 'type-graphql';
-const resolvers: ResolverObject[] = [];
+const resolvers: string[] = [];
 
 fs.readdirSync(path.resolve(__dirname, './')).map((item): void => {
     const resolverPath = __dirname + `/${item}/resolver.ts`;
