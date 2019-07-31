@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { StaticRouter } from 'react-router-dom';
 import { Request, Response } from 'express';
 import { Stats } from 'webpack';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import flushChunks from 'webpack-flush-chunks';
 import { flushChunkNames } from 'react-universal-component/server';
 import { ApolloProvider } from 'react-apollo';
-import App from '../shared/mainPage';
+import App from '../shared/Root';
 
 import client from '../lib/graphql/client';
 
@@ -13,6 +14,8 @@ export default ({ clientStats }: { clientStats: Stats }) => (req: Request, res: 
     const { js } = flushChunks(clientStats, {
         chunkNames: flushChunkNames(),
     });
+
+    const context = {};
 
     res.status(200);
     res.send(
@@ -28,7 +31,9 @@ export default ({ clientStats }: { clientStats: Stats }) => (req: Request, res: 
                         dangerouslySetInnerHTML={{
                             __html: renderToString(
                                 <ApolloProvider client={client}>
-                                    <App />
+                                    <StaticRouter location={req.url} context={context}>
+                                        <App />
+                                    </StaticRouter>
                                 </ApolloProvider>,
                             ),
                         }}
