@@ -4,5 +4,7 @@ module.exports = {
     extends: ['plugin:@typescript-eslint/recommended'],
     rules: {
         'prettier/prettier': 'error',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
     },
 };
