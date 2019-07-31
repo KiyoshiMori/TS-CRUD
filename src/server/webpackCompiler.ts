@@ -1,18 +1,18 @@
-import express, { Express } from 'express';
-import webpack, { MultiCompiler, Compiler } from 'webpack';
+import express from 'express';
+import webpack from 'webpack';
 import webpackDevMW from 'webpack-dev-middleware';
 import webpackHotMw from 'webpack-hot-middleware';
 import webpackHotServer from 'webpack-hot-server-middleware';
-import { client as configDevClient, server as configDevServer } from '../../config/webpack';
+import webpackConfig from '../../config/webpack';
 
-const server: Express = express();
+const server = express();
 
-const compiler: MultiCompiler = webpack([configDevClient, configDevServer]);
+const compiler = webpack([webpackConfig.client, webpackConfig.server]);
 
-const clientCompiler: Compiler = compiler.compilers[0];
+const clientCompiler = compiler.compilers[0];
 
-server.use(webpackDevMW(compiler, configDevClient.devServer));
-server.use(webpackHotMw(clientCompiler, configDevClient.devServer));
+server.use(webpackDevMW(compiler, webpackConfig.client.devServer));
+server.use(webpackHotMw(clientCompiler, webpackConfig.client.devServer));
 server.use(webpackHotServer(compiler));
 
-export default (): Express => server;
+export default () => server;
