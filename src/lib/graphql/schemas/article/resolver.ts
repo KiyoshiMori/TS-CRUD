@@ -1,9 +1,9 @@
 import { Resolver, Query, Arg } from 'type-graphql';
 
-import Article from './ArticleDef';
+import Article from './def';
 
 @Resolver(of => Article)
-export default class RecipeResolver {
+export default class ArticleResolver {
     constructor() {}
 
     @Query(returns => Article)

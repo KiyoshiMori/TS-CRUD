@@ -1,6 +1,6 @@
 import { Resolver, Query, Arg } from 'type-graphql';
 
-import Recipe from './RecipeDef';
+import Recipe from './def';
 
 class RecipeService {
     findById(id: number) {
