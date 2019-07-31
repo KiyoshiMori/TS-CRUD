@@ -6,7 +6,7 @@
     "author": "kiyoshimori <Darkf0x13566@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "dev": "NODE_ENV=development BABEL_ENV=development nodemon --watch config --watch src/server src/server/index.ts",
+        "dev": "NODE_ENV=development BABEL_ENV=development nodemon --watch config --watch src/ src/server/index.ts",
         "lint": "eslint --fix ./"
     },
     "husky": {

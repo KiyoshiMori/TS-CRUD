@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Button, Grid, withStyles, WithStyles } from '@material
 const styles = () => ({
     root: {
         flexGrow: 1,
+        marginBottom: 50,
     },
 });
 
@@ -17,7 +18,9 @@ export default withStyles(styles)(
                     <Toolbar>
                         <Grid container justify="flex-end" alignItems="center" spacing={2}>
                             <Grid item xs={2}>
-                                <Button color="inherit">Login</Button>
+                                <Button color="inherit" variant="outlined">
+                                    Login
+                                </Button>
                             </Grid>
                         </Grid>
                     </Toolbar>
