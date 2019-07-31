@@ -11,7 +11,6 @@ import {
     ButtonGroup,
 } from '@material-ui/core';
 import Input from 'components/Input';
-import {type} from "os";
 
 const styles = () => ({
     dialogContainer: {
