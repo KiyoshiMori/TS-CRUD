@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import {
     Container,
     Grid,
@@ -10,16 +10,26 @@ import {
     Typography,
     withStyles,
     WithStyles,
+    Theme,
 } from '@material-ui/core';
+import ArticleAddModal from 'containers/ArticleAddModal';
 
 import Article from 'lib/graphql/schemas/article/def';
 
-const styles = () => ({
+const styles = (theme: Theme) => ({
+    cardsContainer: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        [theme.breakpoints.down('md')]: {
+            justifyContent: 'center',
+        },
+    },
     cardContainer: {
         display: 'flex',
     },
     card: {
         width: 300,
+        marginBottom: 100,
     },
     cardContent: {
         height: 150,
@@ -57,6 +67,12 @@ const mockArticles = [
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quaerat temporibus voluptatum',
     },
+    {
+        id: 4,
+        createdOn: new Date(),
+        title: 'test4',
+        description: 'Lorem ipconsectetur adipisicing elit. Doloremque quaerat temporibus voluptatum',
+    },
 ];
 
 interface Props extends WithStyles<typeof styles> {
@@ -66,16 +82,27 @@ interface Props extends WithStyles<typeof styles> {
 export default withStyles(styles)(
     (props: Props): React.ReactElement => {
         const { classes } = props;
+        const [isModalOpen, toggleModal] = useState<boolean>(false);
 
         return (
             <Container>
+                <ArticleAddModal isModalOpen={isModalOpen} toggleModal={toggleModal} />
                 <div className={classes.head}>
-                    <Button variant="contained" color="primary">Add an article</Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={(): void => {
+                            toggleModal(!isModalOpen);
+                            return;
+                        }}
+                    >
+                        Add an article
+                    </Button>
                 </div>
-                <Grid component="div" container justify="center">
+                <Grid component="div" container className={classes.cardsContainer}>
                     {mockArticles.map(
                         (article: Article): React.ReactElement => (
-                            <Grid component="div" item xs={4} justify="center" className={classes.cardContainer}>
+                            <Grid component="div" item md={4} sm={6} className={classes.cardContainer}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.media}
