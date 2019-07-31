@@ -5,16 +5,17 @@ import startServer from './graphql';
 import webpackCompiler from './webpackCompiler';
 import db from '../lib/db';
 
-db.authenticate()
-    .then(() => {
+db.sequelize
+    .authenticate()
+    .then((): void => {
         console.log('Connection has been established successfully.');
     })
-    .catch((err: string) => {
+    .catch((err: string): void => {
         console.error('Unable to connect to the database:', err);
     });
 
+db.sequelize.sync({ force: true });
+
 const server: Express = express();
 
-server.use('/test', (req, res) => res.json({ test: 'test' }));
-
-startServer(server, () => webpackCompiler());
+startServer(server, (): Express => webpackCompiler());

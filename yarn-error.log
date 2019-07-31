@@ -17,7 +17,7 @@ npm manifest:
   {
     "name": "tsx-curd",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "index.ts",
     "repository": "git@github.com:KiyoshiMori/tsx-crud.git",
     "author": "kiyoshimori <Darkf0x13566@gmail.com>",
     "license": "MIT",
