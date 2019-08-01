@@ -2,6 +2,7 @@ import React, { useState, Dispatch, SetStateAction } from 'react';
 import { Query, Mutation, MutationFn } from 'react-apollo';
 import { DataProxy } from 'apollo-cache/src/types/DataProxy';
 import { Container, Button, withStyles, WithStyles, Theme } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 
 import ArticleAddModal from 'containers/ArticleAddModal';
 import CardList from './components/CardList';
@@ -9,42 +10,13 @@ import CardList from './components/CardList';
 import Article from 'lib/graphql/schemas/article/type';
 import { getArticles, createArticle } from 'lib/graphql/queries/articles';
 
-const styles = (theme: Theme) => ({
+const styles = (): StyleRules => ({
     head: {
         display: 'flex',
         marginBottom: 50,
         justifyContent: 'flex-end',
     },
 });
-
-const mockArticles = [
-    {
-        id: 1,
-        title: 'test1',
-        createdOn: new Date(),
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea molestias neque nesciunt officiis quo veritatis. Autem, blanditiis esse expedita illo minus nihil. Adipisci amet, architecto asperiores cum esse facere harum hic impedit ipsam, itaque laudantium obcaecati porro praesentium quas quia quidem ratione sunt tempora ut voluptatibus? Delectus dignissimos minima veritatis.',
-    },
-    {
-        id: 2,
-        title: 'test2',
-        createdOn: new Date(),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, illo!',
-    },
-    {
-        id: 3,
-        createdOn: new Date(),
-        title: 'test3',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quaerat temporibus voluptatum',
-    },
-    {
-        id: 4,
-        createdOn: new Date(),
-        title: 'test4',
-        description: 'Lorem ipconsectetur adipisicing elit. Doloremque quaerat temporibus voluptatum',
-    },
-];
 
 interface Props extends WithStyles<typeof styles> {
     articles?: Article[];
