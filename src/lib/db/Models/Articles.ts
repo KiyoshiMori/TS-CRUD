@@ -8,6 +8,7 @@ Articles.init(
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         title: Sequelize.STRING,
         description: {

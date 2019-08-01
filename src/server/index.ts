@@ -14,8 +14,10 @@ db.sequelize
         console.error('Unable to connect to the database:', err);
     });
 
-db.sequelize.sync({ force: true });
+db.sequelize.sync();
 
 const server: Express = express();
+
+server.use('/static', express.static('src/static'));
 
 startServer(server, (): Express => webpackCompiler());
