@@ -11,6 +11,9 @@ export default class Article {
     @Field({ nullable: true })
     description?: string;
 
+    @Field({ nullable: true })
+    createdOn?: Date;
+
     @Field()
-    createdOn: Date;
+    createdAt?: Date;
 }

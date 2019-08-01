@@ -16,7 +16,7 @@ const styles = (theme: Theme) => ({
 });
 
 interface Props extends WithStyles<typeof styles> {
-    articles: Article[];
+    articles?: Article[] | null;
 }
 
 export default withStyles(styles)(
