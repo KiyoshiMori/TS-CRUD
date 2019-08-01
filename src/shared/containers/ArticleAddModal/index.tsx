@@ -10,9 +10,10 @@ import {
     Button,
     ButtonGroup,
 } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 import Input from 'components/Input';
 
-const styles = () => ({
+const styles = (): StyleRules => ({
     dialogContainer: {
         padding: 20,
     },
@@ -51,11 +52,6 @@ export default withStyles(styles)(
                     [name]: value,
                 });
             }
-        };
-
-        const onSave = (): void => {
-            console.log({ inputValues });
-            onChange(inputsInitialState);
         };
 
         return (

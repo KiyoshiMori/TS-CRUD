@@ -1,7 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, Button, Grid, withStyles, WithStyles } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 
-const styles = () => ({
+const styles = (): StyleRules => ({
     root: {
         flexGrow: 1,
         marginBottom: 50,

@@ -11,10 +11,11 @@ import {
     Typography,
     withStyles,
 } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 
 import Article from 'lib/graphql/schemas/article/type';
 
-const styles = (theme: Theme) => ({
+const styles = (): StyleRules => ({
     cardContainer: {
         display: 'flex',
     },

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Grid, Theme, withStyles, WithStyles } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 
 import Article from 'lib/graphql/schemas/article/type';
 
 import Card from './components/Card';
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme): StyleRules => ({
     cardsContainer: {
         display: 'flex',
         justifyContent: 'flex-start',

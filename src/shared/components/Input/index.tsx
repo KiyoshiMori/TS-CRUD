@@ -1,8 +1,9 @@
 import React, { ChangeEvent, ReactEventHandler } from 'react';
 import { Input, InputLabel, withStyles, WithStyles } from '@material-ui/core';
+import { StyleRules } from '@material-ui/styles';
 import { InputProps } from '@material-ui/core/Input';
 
-const styles = () => ({
+const styles = (): StyleRules => ({
     input: {
         marginBottom: 15,
     },
