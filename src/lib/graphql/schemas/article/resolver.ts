@@ -27,14 +27,14 @@ class AddNewArticle implements Partial<Article> {
     @Field(type => ID, { nullable: true, description: 'autoincrement' })
     id: number;
 
-    @Field()
+    @Field({ nullable: false })
     title: string;
 
     @Field({ nullable: true })
     description?: string;
 
-    @Field()
-    createdOn: Date;
+    @Field({ nullable: true })
+    createdOn?: Date;
 }
 
 @Resolver(of => Article)

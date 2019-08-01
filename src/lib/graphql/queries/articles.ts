@@ -9,3 +9,14 @@ export const getArticles = gql`
         }
     }
 `;
+
+export const createArticle = gql`
+    mutation($title: String!, $description: String) {
+        createArticle(data: { title: $title, description: $description }) {
+            createdAt
+            description
+            title
+            id
+        }
+    }
+`;

@@ -1,12 +1,13 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import { Query } from 'react-apollo';
+import { Query, Mutation, MutationFn } from 'react-apollo';
+import { DataProxy } from 'apollo-cache/src/types/DataProxy';
 import { Container, Button, withStyles, WithStyles, Theme } from '@material-ui/core';
 
 import ArticleAddModal from 'containers/ArticleAddModal';
 import CardList from './components/CardList';
 
 import Article from 'lib/graphql/schemas/article/type';
-import { getArticles } from 'lib/graphql/queries/articles';
+import { getArticles, createArticle } from 'lib/graphql/queries/articles';
 
 const styles = (theme: Theme) => ({
     head: {
@@ -46,7 +47,15 @@ const mockArticles = [
 ];
 
 interface Props extends WithStyles<typeof styles> {
-    articles?: [Article];
+    articles?: Article[];
+}
+
+interface ArticlesQueryData {
+    getArticles?: Article[];
+}
+
+interface ArticlesMutationData {
+    createArticle: Article;
 }
 
 export default withStyles(styles)(
@@ -56,7 +65,27 @@ export default withStyles(styles)(
 
         return (
             <Container>
-                <ArticleAddModal isModalOpen={isModalOpen} toggleModal={toggleModal} />
+                <Mutation<ArticlesMutationData>
+                    mutation={createArticle}
+                    update={(cache: DataProxy, { data }): void => {
+                        const cacheData = cache.readQuery<ArticlesQueryData>({
+                            query: getArticles,
+                        });
+
+                        const articles = cacheData ? cacheData.getArticles : null;
+
+                        const newArticle = data ? data.createArticle : null;
+
+                        cache.writeQuery({
+                            query: getArticles,
+                            data: { getArticles: articles ? [newArticle, ...articles] : [newArticle] },
+                        });
+                    }}
+                >
+                    {(mutate: MutationFn, { loading }: { loading: boolean }): React.ReactElement => (
+                        <ArticleAddModal isModalOpen={isModalOpen} toggleModal={toggleModal} onSaveClick={mutate} />
+                    )}
+                </Mutation>
                 <div className={classes.head}>
                     <Button
                         variant="contained"
@@ -69,10 +98,8 @@ export default withStyles(styles)(
                         Add an article
                     </Button>
                 </div>
-                <Query query={getArticles}>
-                    {({ data }: { data: { getArticles: Article[] } }): React.ReactElement => (
-                        <CardList articles={data && data.getArticles} />
-                    )}
+                <Query<ArticlesQueryData> query={getArticles}>
+                    {({ data }): React.ReactElement => <CardList articles={data ? data.getArticles : null} />}
                 </Query>
             </Container>
         );
